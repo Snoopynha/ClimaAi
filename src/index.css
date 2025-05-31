@@ -1,0 +1,18 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --cor-bloco: #ffffff;
+  --texto-principal: #222;
+  --texto-secundario: #666;
+  --fundo-app: #f5f5f5;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: #f5f5f5;
+  color: #333;
+}

@@ -1,0 +1,98 @@
+import React, { useState, useEffect } from 'react';
+import { FaSearch, FaSun, FaMoon, FaCog } from 'react-icons/fa';
+import Logo from '../assets/Logo.png';
+import '../App.css';
+import './Navbar.css';
+
+function Navbar({ cidade, setCidade, buscarClima, modoEscuro, setModeEscuro, unidade, alterarUnidade}) {
+    const [mostrarOpcoes, setMostrarOpcoes] = useState(false);
+    const [sugestoes, setSugestoes] = useState([]);
+
+    useEffect(() => {
+        const buscarSugestoes = async () => {
+            if (!cidade || cidade.length < 2) {
+                setSugestoes([]);
+                return;
+            }
+
+            try {
+                const resp = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${cidade}&count=5`);
+                const dados = await resp.json();
+
+                if (dados.results) {
+                setSugestoes(dados.results);
+                } else {
+                setSugestoes([]);
+                }
+            } catch (e) {
+                console.error('Erro ao buscar sugestões:', e);
+                setSugestoes([]);
+            }
+        };
+
+        const delayDebounce = setTimeout(() => {
+        buscarSugestoes();
+        }, 500);
+
+        return () => clearTimeout(delayDebounce);
+    }, [cidade]);
+
+    const selecionarCidade = (cidadeSelecionada) => {
+        setCidade(cidadeSelecionada.name);
+        setSugestoes([]);
+        buscarClima(cidadeSelecionada);
+    };
+
+    const selecionarUnidade = (novaUnidade) => {
+        alterarUnidade(novaUnidade);
+        setMostrarOpcoes(false);
+    };
+
+    return (
+        <nav className={`navbar ${modoEscuro ? 'dark' : ''}`}>
+        <div className="esquerda">
+            <img src={Logo} alt="Logo" className="Logo" />
+        </div>
+
+        <div className="direita">
+            <div className="busca">
+            <div className="input-wrapper">
+                <FaSearch className="icone-busca" />
+                <input
+                type="text"
+                placeholder="Buscar cidade"
+                value={cidade}
+                onChange={(e) => setCidade(e.target.value)}
+                />
+                {sugestoes.length > 0 && (
+                <ul className="sugestoes-lista">
+                    {sugestoes.map((s) => (
+                    <li key={s.id} onClick={() => selecionarCidade(s)}>
+                        {s.name}, {s.country}
+                    </li>
+                    ))}
+                </ul>
+                )}
+            </div>
+            </div>
+
+            <div className="configuracoes">
+            <button onClick={() => setMostrarOpcoes(!mostrarOpcoes)}><FaCog /></button>
+            {mostrarOpcoes && (
+                <div className="menu-opcoes">
+                <button onClick={() => selecionarUnidade('celsius')}>Celsius (°C)</button>
+                <button onClick={() => selecionarUnidade('fahrenheit')}>Fahrenheit (°F)</button>
+                <button onClick={() => selecionarUnidade('kelvin')}>Kelvin (K)</button>
+                </div>
+            )}
+            </div>
+
+            <button className="modo-escuro-btn" onClick={() => setModeEscuro(!modoEscuro)}>
+            {modoEscuro ? <FaSun /> : <FaMoon />}
+            </button>
+        </div>
+        </nav>
+    );
+}
+
+export default Navbar;

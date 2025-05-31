@@ -1,0 +1,38 @@
+.clima-atual {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--cor-bloco);
+  padding: 1.5rem;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  flex-wrap: wrap;
+}
+
+.info-principal {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.info-principal img {
+  width: 60px;
+  height: 60px;
+}
+
+.temperatura {
+  font-size: 2.8rem;
+  font-weight: bold;
+}
+
+.descricao {
+  font-size: 1rem;
+  color: var(--texto-secundario);
+}
+
+.info-local {
+  text-align: right;
+  font-size: 1rem;
+  color: var(--texto-secundario);
+}

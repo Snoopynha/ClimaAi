@@ -1,0 +1,14 @@
+.app {
+  background-color: var(--fundo-app);
+  color: var(--texto-principal);
+  min-height: 100vh;
+  font-family: 'Arial', sans-serif;
+  transition: background-color 0.3s ease;
+}
+
+.app.dark {
+  --cor-bloco: #1f1f1f;
+  --texto-principal: #f0f0f0;
+  --texto-secundario: #aaa;
+  --fundo-app: #121212;
+}

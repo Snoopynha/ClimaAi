@@ -1,0 +1,15 @@
+.mudancas-climaticas {
+  background-color: var(--cor-bloco);
+  padding: 1.5rem;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+}
+
+.mudancas-climaticas h2 {
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.mudancas-climaticas canvas {
+  max-width: 100%;
+}
