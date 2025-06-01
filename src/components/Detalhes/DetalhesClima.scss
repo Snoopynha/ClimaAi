@@ -1,0 +1,62 @@
+@import '../variaveis/variaveis.scss';
+
+.cartao-detalhes-clima {
+  background-color: var(--cor-bloco);
+  border-radius: 16px;
+  padding: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.2rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.411);
+  border: var(--borda);
+  margin-bottom: 2rem;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.733);
+  }
+
+  .item-detalhe {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    background-color: var(--fundo-item);
+    border: var(--borda);
+
+    .icone-detalhe {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--destaque), var(--destaque-secundario));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.1rem;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .conteudo-detalhe {
+      display: flex;
+      flex-direction: column;
+
+      .rotulo-detalhe {
+        font-size: 0.85rem;
+        color: var(--texto-secundario);
+        margin-bottom: 0.3rem;
+        font-weight: 500;
+      }
+
+      .valor-detalhe {
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: var(--texto-principal);
+        letter-spacing: -0.5px;
+      }
+    }
+  }
+}
