@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import Navbar from './components/Navbar';
-import ClimaAtual from './components/ClimaAtual';
-import DetalhesClimaticos from './components/DetalhesClimaticos';
-import MudancasClimaticas from './components/MudancasClimaticas';
+import Navbar from './components/Nav/Navbar';
+import ClimaAtual from './components/Atual/ClimaAtual';
+import DetalhesClimaticos from './components/Detalhes/DetalhesClimaticos';
+import MudancasClimaticas from './components/Mudanca/MudancasClimaticas';
 import './App.css';
 
 const anoAtual = new Date().getFullYear();
@@ -39,8 +39,10 @@ function App() {
       />
 
       <main style={{ padding: '2rem' }}>
+        <div className='flex'>
         <ClimaAtual cidade={cidade} unidade={unidade} />
         <DetalhesClimaticos cidade={cidade} unidade={unidade} />
+        </div>
         <MudancasClimaticas cidade={cidade} unidade={unidade} anoInicio={anoInicio} />
       </main>
     </div>

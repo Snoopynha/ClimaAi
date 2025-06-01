@@ -1,0 +1,211 @@
+@import '../variaveis/variaveis.scss';
+
+.cartao-clima {
+  background: var(--cor-bloco);
+  border-radius: 16px;
+  padding: 1.8rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.411);
+  border: var(--borda);
+  margin-bottom: 2rem;
+  transition: all 0.3s ease;
+  width: 100%;
+  max-width: 920px;
+  flex: 1;
+  color: var(--texto-principal);
+  position: relative;
+  overflow: hidden;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.733);
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 15px;
+    margin-bottom: 15px;
+   
+    background: linear-gradient(to right, var(--destaque), var(--destaque-secundario));
+  }
+}
+
+.cabecalho-clima {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.8rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--borda-divisoria);
+
+  h2 {
+    font-size: 1.5rem;
+    color: var(--texto-principal);
+    font-weight: 600;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 65px;
+      left: 9%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(to right, var(--destaque), var(--destaque-secundario));
+      border-radius: 3px;
+    }
+  }
+}
+
+.etiqueta-tempo {
+  background: linear-gradient(to right, var(--destaque), var(--destaque-secundario));
+  color: white;
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.conteudo-clima {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+.principal-clima {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.icone-clima {
+  width: 90px;
+  height: 90px;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+.exibicao-temperatura {
+  display: flex;
+  align-items: flex-start;
+  line-height: 1;
+  gap: 0.5rem;
+}
+
+.valor-temperatura {
+  font-size: 3.8rem;
+  font-weight: 300;
+  color: var(--texto-principal);
+  font-feature-settings: "tnum";
+  transition: color 0.3s ease;
+}
+
+.unidade-temperatura {
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: var(--texto-secundario);
+  margin-top: 0.8rem;
+  transition: color 0.3s ease;
+}
+
+.descricao-clima {
+  font-size: 1.3rem;
+  color: var(--destaque);
+  font-weight: 500;
+  text-transform: capitalize;
+  text-align: center;
+  padding: 0.5rem 1.5rem;
+  background-color: var(--fundo-descricao);
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+.info-localizacao {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--borda-divisoria);
+}
+
+.marcador-local {
+  background: linear-gradient(to right, var(--destaque), var(--destaque-secundario));
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.nome-cidade {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--texto-principal);
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.nome-pais {
+  font-size: 1rem;
+  color: var(--texto-secundario);
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .cartao-clima {
+    padding: 1.5rem;
+    border-radius: 12px;
+  }
+
+  .valor-temperatura {
+    font-size: 3.2rem;
+  }
+
+  .icone-clima {
+    width: 80px;
+    height: 80px;
+  }
+
+  .cabecalho-clima h2 {
+    font-size: 1.3rem;
+  }
+
+  .nome-cidade {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .cartao-clima {
+    padding: 1.2rem;
+  }
+
+  .valor-temperatura {
+    font-size: 2.8rem;
+  }
+
+  .unidade-temperatura {
+    font-size: 1.4rem;
+  }
+
+  .descricao-clima {
+    font-size: 1.1rem;
+  }
+}

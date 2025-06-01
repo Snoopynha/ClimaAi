@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { FaSearch, FaSun, FaMoon, FaCog } from 'react-icons/fa';
-import Logo from '../assets/Logo.png';
-import '../App.css';
-import './Navbar.css';
-
+import Logo from '../../assets/Logo.png';
+import '../../App.css';
+import './Nav.scss';
 function Navbar({ cidade, setCidade, buscarClima, modoEscuro, setModeEscuro, unidade, alterarUnidade}) {
     const [mostrarOpcoes, setMostrarOpcoes] = useState(false);
     const [sugestoes, setSugestoes] = useState([]);
@@ -49,7 +48,8 @@ function Navbar({ cidade, setCidade, buscarClima, modoEscuro, setModeEscuro, uni
     };
 
     return (
-        <nav className={`navbar ${modoEscuro ? 'dark' : ''}`}>
+       <div className='nav'>
+         <nav className={`navbar ${modoEscuro ? 'dark' : ''}`}>
         <div className="esquerda">
             <img src={Logo} alt="Logo" className="Logo" />
         </div>
@@ -87,11 +87,12 @@ function Navbar({ cidade, setCidade, buscarClima, modoEscuro, setModeEscuro, uni
             )}
             </div>
 
-            <button className="modo-escuro-btn" onClick={() => setModeEscuro(!modoEscuro)}>
+            <button className="modo-escuro-btn" id='btn' onClick={() => setModeEscuro(!modoEscuro)}>
             {modoEscuro ? <FaSun /> : <FaMoon />}
             </button>
         </div>
         </nav>
+       </div>
     );
 }
 

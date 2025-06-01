@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Chart as ChartJS, LineElement, PointElement, LinearScale, CategoryScale, Tooltip, Legend} from 'chart.js';
 import { Line } from 'react-chartjs-2';
-import './MudancasClimaticas.css';
+import './Mudancas.scss';
 
 ChartJS.register(LineElement, PointElement, LinearScale, CategoryScale, Tooltip, Legend);
 
@@ -53,7 +53,7 @@ function MudancasClimaticas({ cidade, unidade, anoInicio }) {
       {
         label: `Temp. Máx. Média (°${unidade === 'celsius' ? 'C' : unidade === 'fahrenheit' ? 'F' : 'K'})`,
         data: dados.map((d) => d.mediaMax),
-        borderColor: 'red',
+        borderColor: '#f54747',
         backgroundColor: 'rgba(255,0,0,0.1)',
         tension: 0.3,
         fill: false,
@@ -61,7 +61,7 @@ function MudancasClimaticas({ cidade, unidade, anoInicio }) {
       {
         label: `Temp. Mín. Média (°${unidade === 'celsius' ? 'C' : unidade === 'fahrenheit' ? 'F' : 'K'})`,
         data: dados.map((d) => d.mediaMin),
-        borderColor: 'blue',
+        borderColor: '#4895ef',
         backgroundColor: 'rgba(0,0,255,0.1)',
         tension: 0.3,
         fill: false,
@@ -70,7 +70,8 @@ function MudancasClimaticas({ cidade, unidade, anoInicio }) {
   };
 
   return (
-    <div className="mudancas-climaticas">
+    <div className='centraliza'>
+      <div className="mudancas-climaticas">
       <h2>Mudanças Climáticas em {cidade?.nome}</h2>
       {carregando ? (
         <p>Carregando dados históricos...</p>
@@ -79,6 +80,7 @@ function MudancasClimaticas({ cidade, unidade, anoInicio }) {
       ) : (
         <p>Sem dados históricos disponíveis.</p>
       )}
+    </div>
     </div>
   );
 }

@@ -1,0 +1,68 @@
+.centraliza {
+  display: flex;
+  justify-content: center;
+}
+
+.mudancas-climaticas {
+  background-color: var(--cor-bloco);
+  border-radius: 16px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.411);
+  border: var(--borda);
+  transition: all 0.3s ease;
+  width: 1200px;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.733);
+  }
+
+  h2 {
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: var(--texto-principal);
+    font-size: 1.4rem;
+    font-weight: 600;
+    position: relative;
+    padding-bottom: 0.8rem;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(to right, var(--destaque), var(--destaque-secundario));
+      border-radius: 3px;
+    }
+  }
+
+  p {
+    text-align: center;
+    color: var(--texto-secundario);
+    margin: 1.5rem 0;
+  }
+
+  canvas {
+    max-width: 100%;
+    border-radius: 8px;
+    background-color: var(--fundo-grafico);
+    padding: 1rem;
+  }
+
+  @media (max-width: 768px) {
+    padding: 1.5rem;
+
+    h2 {
+      font-size: 1.3rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    padding: 1.2rem;
+    border-radius: 12px;
+  }
+}
