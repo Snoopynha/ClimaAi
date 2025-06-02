@@ -19,7 +19,7 @@ function DetalhesClimaticos({ cidade, unidade }) {
     const obterDetalhes = async () => {
       try {
         const resposta = await fetch(
-          `https://api.open-meteo.com/v1/forecast?latitude=${cidade.latitude}&longitude=${cidade.longitude}&current=apparent_temperature,relative_humidity_2m,wind_speed_10m,uv_index&temperature_unit=${unidade === 'celsius' ? 'celsius' : unidade}&timezone=America/Sao_Paulo`
+          `https://api.open-meteo.com/v1/forecast?latitude=${cidade.latitude}&longitude=${cidade.longitude}&current=apparent_temperature,relative_humidity_2m,wind_speed_10m,uv_index&temperature_unit=${unidade === 'fahrenheit' ? 'fahrenheit' : 'celsius'}&timezone=America/Sao_Paulo`
         );
         const dados = await resposta.json();
         setDetalhes(dados.current);
@@ -45,7 +45,7 @@ function DetalhesClimaticos({ cidade, unidade }) {
         <div className="conteudo-detalhe">
           <span className="rotulo-detalhe">Sensação Térmica</span>
           <span className="valor-detalhe">
-            {sensacao}°{unidade === 'celsius' ? 'C' : unidade === 'fahrenheit' ? 'F' : 'K'}
+            {sensacao}°{unidade === 'celsius' ? 'C' : 'F'}
           </span>
         </div>
       </div>

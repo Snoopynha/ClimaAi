@@ -12,12 +12,21 @@ function ClimaAtual({ cidade, unidade }) {
         const obterClima = async () => {
             try {
                 const resposta = await fetch(
-                    `https://api.open-meteo.com/v1/forecast?latitude=${cidade.latitude}&longitude=${cidade.longitude}&current=temperature_2m,weathercode,apparent_temperature,relative_humidity_2m,wind_speed_10m,uv_index&temperature_unit=${unidade === 'celsius' ? 'celsius' : unidade}&timezone=America/Sao_Paulo`
+                    `https://api.open-meteo.com/v1/forecast?latitude=${cidade.latitude}&longitude=${cidade.longitude}&current=temperature_2m,weathercode,apparent_temperature,relative_humidity_2m,wind_speed_10m,uv_index&temperature_unit=${unidade === 'fahrenheit' ? 'fahrenheit' : 'celsius'}&timezone=auto`
                 );
                 const dados = await resposta.json();
 
                 if (dados && dados.current && 'weathercode' in dados.current) {
                     setClima(dados.current);
+
+                    const horaCidade = new Date(dados.current.time).getHours();
+                    if (horaCidade >= 5 && horaCidade < 12) {
+                        setMomento('Manhã');
+                    } else if (horaCidade >= 12 && horaCidade < 18) {
+                        setMomento('Tarde');
+                    } else {
+                        setMomento('Noite');
+                    }
                 } else {
                     setClima(null);
                     console.warn('Dados de clima não encontrados:', dados);
@@ -29,15 +38,6 @@ function ClimaAtual({ cidade, unidade }) {
         };
 
         obterClima();
-
-        const agora = new Date();
-        const hora = agora.getHours();
-
-        if (hora >= 6 && hora < 18) {
-            setMomento('Dia');
-        } else {
-            setMomento('Noite');
-        }
     }, [cidade, unidade]);
 
     const weatherCodeMap = {
@@ -109,7 +109,7 @@ function ClimaAtual({ cidade, unidade }) {
                     <div className="exibicao-temperatura">
                         <span className="valor-temperatura">{temp}</span>
                         <span className="unidade-temperatura">
-                            °{unidade === 'celsius' ? 'C' : unidade === 'fahrenheit' ? 'F' : 'K'}
+                            °{unidade === 'celsius' ? 'C' : 'F'}
                         </span>
                     </div>
                     <div className="descricao-clima">{descricao}</div>

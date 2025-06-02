@@ -1,36 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import { FaSearch, FaSun, FaMoon, FaCog } from 'react-icons/fa';
-import Logo from '../../assets/Logo.png';
+import LogoCl from '../../assets/LogoModoClaro.png';
+import LogoEs from '../../assets/LogoModoEscuro.png';
 import '../../App.css';
 import './Nav.scss';
+
 function Navbar({ cidade, setCidade, buscarClima, modoEscuro, setModeEscuro, unidade, alterarUnidade}) {
     const [mostrarOpcoes, setMostrarOpcoes] = useState(false);
     const [sugestoes, setSugestoes] = useState([]);
 
     useEffect(() => {
-        const buscarSugestoes = async () => {
-            if (!cidade || cidade.length < 2) {
-                setSugestoes([]);
-                return;
-            }
+        if (!cidade || cidade.trim().length < 1) {
+            setSugestoes([]);
+            return;
+        }
 
+        const delayDebounce = setTimeout(async () => {
             try {
-                const resp = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${cidade}&count=5`);
+                const resp = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(cidade)}&count=5`);
                 const dados = await resp.json();
 
                 if (dados.results) {
-                setSugestoes(dados.results);
+                    setSugestoes(dados.results);
                 } else {
-                setSugestoes([]);
+                    setSugestoes([]);
                 }
             } catch (e) {
                 console.error('Erro ao buscar sugestões:', e);
                 setSugestoes([]);
             }
-        };
-
-        const delayDebounce = setTimeout(() => {
-        buscarSugestoes();
         }, 500);
 
         return () => clearTimeout(delayDebounce);
@@ -51,29 +49,29 @@ function Navbar({ cidade, setCidade, buscarClima, modoEscuro, setModeEscuro, uni
        <div className='nav'>
          <nav className={`navbar ${modoEscuro ? 'dark' : ''}`}>
         <div className="esquerda">
-            <img src={Logo} alt="Logo" className="Logo" />
+            <img src={modoEscuro ? LogoEs : LogoCl} alt="Logo" className="Logo" />
         </div>
 
         <div className="direita">
             <div className="busca">
-            <div className="input-wrapper">
-                <FaSearch className="icone-busca" />
-                <input
-                type="text"
-                placeholder="Buscar cidade"
-                value={cidade}
-                onChange={(e) => setCidade(e.target.value)}
-                />
-                {sugestoes.length > 0 && (
-                <ul className="sugestoes-lista">
-                    {sugestoes.map((s) => (
-                    <li key={s.id} onClick={() => selecionarCidade(s)}>
-                        {s.name}, {s.country}
-                    </li>
-                    ))}
-                </ul>
-                )}
-            </div>
+                <div className="input-wrapper">
+                    <FaSearch className="icone-busca" />
+                    <input
+                    type="text"
+                    placeholder="Buscar cidade"
+                    value={cidade}
+                    onChange={(e) => setCidade(e.target.value)}
+                    />
+                    {sugestoes.length > 0 && (
+                    <ul className="sugestoes-lista">
+                        {sugestoes.map((s) => (
+                        <li key={s.id} onClick={() => selecionarCidade(s)}>
+                            {s.name}, {s.country}
+                        </li>
+                        ))}
+                    </ul>
+                    )}
+                </div>
             </div>
 
             <div className="configuracoes">
@@ -82,7 +80,6 @@ function Navbar({ cidade, setCidade, buscarClima, modoEscuro, setModeEscuro, uni
                 <div className="menu-opcoes">
                 <button onClick={() => selecionarUnidade('celsius')}>Celsius (°C)</button>
                 <button onClick={() => selecionarUnidade('fahrenheit')}>Fahrenheit (°F)</button>
-                <button onClick={() => selecionarUnidade('kelvin')}>Kelvin (K)</button>
                 </div>
             )}
             </div>
