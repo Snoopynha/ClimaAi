@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { FaSearch, FaSun, FaMoon, FaCog } from 'react-icons/fa';
 import LogoCl from '../../assets/LogoModoClaro.png';
 import LogoEs from '../../assets/LogoModoEscuro.png';
-import '../../App.css';
 import './Nav.scss';
+
 
 function Navbar({ cidade, setCidade, buscarClima, modoEscuro, setModeEscuro, unidade, alterarUnidade}) {
     const [mostrarOpcoes, setMostrarOpcoes] = useState(false);

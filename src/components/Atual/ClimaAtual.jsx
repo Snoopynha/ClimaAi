@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FaMapMarkerAlt, FaSun, FaMoon, FaCloud, FaCloudSun, FaCloudMoon, FaCloudRain, FaSnowflake, FaBolt, FaSmog } from 'react-icons/fa';
-import './ClimaAtual.scss';
+import "./ClimaAtual.scss"
 
 function ClimaAtual({ cidade, unidade }) {
     const [clima, setClima] = useState(null);
@@ -99,7 +99,7 @@ function ClimaAtual({ cidade, unidade }) {
     return (
         <div className="cartao-clima">
             <div className="cabecalho-clima">
-                <h2>Clima Atual</h2>
+                <h2>Temperatura</h2>
                 <span className="etiqueta-tempo">{momento}</span>
             </div>
             
