@@ -3,6 +3,7 @@ import Navbar from './components/Nav/Navbar';
 import ClimaAtual from './components/Atual/ClimaAtual';
 import DetalhesClimaticos from './components/Detalhes/DetalhesClimaticos';
 import MudancasClimaticas from './components/Mudanca/MudancasClimaticas';
+import './components/Variaveis/Variaveis.scss';
 import './App.css';
 
 const anoAtual = new Date().getFullYear();

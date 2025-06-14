@@ -5,7 +5,8 @@ import {
   FaWind, 
   FaSun 
 } from 'react-icons/fa';
-import './DetalhesClima.scss';
+import "./DetalhesClima.scss";
+
 
 function DetalhesClimaticos({ cidade, unidade }) {
   const [detalhes, setDetalhes] = useState(null);

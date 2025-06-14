@@ -1,13 +1,221 @@
-:root{--cor-bloco: #ffffff;
-  --texto-principal: #222;
-  --texto-secundario: #666;
-  --fundo-app: #f5f5f5;
-  --cor-bloco: #1f1f1f;
-    --texto-principal: #f0f0f0;
-    --texto-secundario: #aaa;
-    --fundo-app: #121212;
-     --destaque: #f54747;             
-  --destaque-secundario: #f7832c;
-    --fundo-item: rgba(78, 78, 78, 0.08);
-    --borda:  1px solid black;
+// tema claro
+:root {
+  --destaque-rgb: 255, 126, 95;
+  --destaque-secundario-rgb: 254, 180, 123;
+  --terciario-rgb: 140, 126, 234;
+  
+  --cor-bloco: rgba(255, 255, 255, 0.92);
+  --texto-principal: #1a1a1a;
+  --texto-secundario: #5a5a5a;
+  --fundo-app: linear-gradient(145deg, #324253 0%, #a4a5a7 100%);
+  --fundo-item: rgba(255, 255, 255, 0.7);
+  --borda: 1px solid rgba(255, 255, 255, 0.4);
+  --borda-divisoria: rgba(0, 0, 0, 0.08);
+  --sombra: 0 12px 40px rgba(0, 0, 0, 0.08);
+  --icone: rgb(0, 0, 0);
+  
+  --gradiente-primario: linear-gradient(145deg, 
+    rgba(var(--destaque-rgb), 1) 0%, 
+    rgba(var(--destaque-secundario-rgb), 1) 100%);
+  --gradiente-secundario: linear-gradient(145deg, 
+    rgba(var(--terciario-rgb), 1) 0%, 
+    rgba(117, 58, 136, 1) 100%);
+  --gradiente-glass: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.45) 0%, 
+    rgba(255, 255, 255, 0.15) 100%);
+  --gradiente-texto: linear-gradient(90deg, 
+    rgba(var(--destaque-rgb), 1) 20%, 
+    rgba(var(--terciario-rgb), 1) 80%);
+}
+
+// tema escuro 
+.app.dark {
+  --destaque-rgb: 102, 126, 234;
+  --destaque-secundario-rgb: 117, 58, 136;
+  --terciario-rgb: 106, 239, 125;
+  
+  --cor-bloco: rgba(25, 25, 35, 0.92);
+  --texto-principal: rgba(255, 255, 255, 0.95);
+  --texto-secundario: rgba(255, 255, 255, 0.65);
+ --fundo-app: linear-gradient(145deg, #0a0f1c 0%, #1c1f2a 50%, #2c2f3a 100%);
+
+  --fundo-item: rgba(40, 40, 50, 0.7);
+  --borda: 1px solid rgba(255, 255, 255, 0.08);
+  --borda-divisoria: rgba(255, 255, 255, 0.05);
+  --sombra: 0 12px 40px rgba(0, 0, 0, 0.25);
+  
+  --gradiente-primario: linear-gradient(145deg, 
+    rgba(var(--destaque-rgb), 1) 0%, 
+    rgba(var(--destaque-secundario-rgb), 1) 100%);
+  --gradiente-secundario: linear-gradient(145deg, 
+    #8E2DE2 0%, 
+    #4A00E0 100%);
+  --gradiente-glass: linear-gradient(135deg, 
+    rgba(0, 0, 0, 0.25) 0%, 
+    rgba(0, 0, 0, 0.05) 100%);
+  --gradiente-texto: linear-gradient(90deg, 
+    rgba(var(--destaque-rgb), 1) 20%, 
+    rgba(var(--terciario-rgb), 1) 80%);
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes borderPulse {
+  0% { opacity: 0.3; }
+  50% { opacity: 0.8; }
+  100% { opacity: 0.3; }
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@media (max-width: 1200px) {
+  .cartao-detalhes-clima {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+  
+  .valor-temperatura {
+    font-size: 5rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .flex {
+    margin-top: 120px;
+  }
+  
+  .cartao-clima,
+  .cartao-detalhes-clima,
+  .mudancas-climaticas {
+    padding: 2rem;
+    border-radius: 24px;
+  }
+  
+  .valor-temperatura {
+    font-size: 4.5rem;
+  }
+  
+  .icone-clima {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .cartao-detalhes-clima .item-detalhe {
+    padding: 1.2rem;
+    
+    .icone-detalhe {
+      width: 48px;
+      height: 48px;
+      font-size: 1.3rem;
+    }
+    
+    .valor-detalhe {
+      font-size: 1.6rem;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .app {
+    padding: 1.5rem;
+    
+    &::before {
+      animation: gradientShift 15s ease infinite;
+      background-size: 200% 200%;
+    }
+  }
+  
+
+  .cartao-clima,
+  .cartao-detalhes-clima,
+  .mudancas-climaticas {
+    padding: 1.8rem;
+    border-radius: 20px;
+  }
+  
+  .valor-temperatura {
+    font-size: 4rem;
+  }
+  
+  .descricao-clima {
+    font-size: 1.3rem;
+    padding: 0.8rem 2rem;
+  }
+  
+  .cartao-detalhes-clima {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .mudancas-climaticas {
+    padding: 1.8rem;
+    
+    h2 {
+      font-size: 1.5rem;
+    }
+    
+    p {
+      font-size: 1rem;
+    }
+    
+    canvas {
+      height: 300px !important;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .app {
+    padding: 1rem;
+  }
+  
+  .nav .navbar {
+    border-radius: 18px;
+  }
+  
+  .cartao-clima,
+  .cartao-detalhes-clima,
+  .mudancas-climaticas {
+    padding: 1.5rem;
+    border-radius: 18px;
+  }
+  
+  .cabecalho-clima {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+    
+    h2::after {
+      left: 0;
+      transform: none;
+    }
+  }
+  
+  .valor-temperatura {
+    font-size: 3.5rem;
+  }
+  
+  .icone-clima {
+    width: 90px;
+    height: 90px;
+  }
+  
+  .cartao-detalhes-clima {
+    grid-template-columns: 1fr;
+  }
+  
+  .info-localizacao {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .mudancas-climaticas canvas {
+    height: 250px !important;
+    padding: 1rem;
+  }
 }
