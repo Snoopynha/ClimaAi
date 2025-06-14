@@ -42,7 +42,7 @@ function ClimaAtual({ cidade, unidade }) {
 
     const weatherCodeMap = {
         0: 'Céu limpo',
-        1: 'Principalmente limpo',
+        1: 'Parcialmente limpo',
         2: 'Parcialmente nublado',
         3: 'Nublado',
         45: 'Névoa',
